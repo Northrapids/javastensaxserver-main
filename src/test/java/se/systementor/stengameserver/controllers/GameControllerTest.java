@@ -32,33 +32,12 @@ class GameControllerTest {
         //then, what we expect
         //checks if the method is called, in this case one time
 
-        verify(statisticsService,times(2)).save("Computer","BAG","Scissors");
+        verify(statisticsService,times(1)).save("Computer","BAG","Scissors");
         verifyNoMoreInteractions(statisticsService);
 
 
     }
 
-    /*
 
-    @DisplayName("user is winner")
-    @Test
-    void whenYourSelectionEqualsScissorAndMySelectionEqualsBag_thenWinnerIsYou() {
-
-        //given
-        String yourSelection = "SCISSOR";
-        String mySelection = "BAG";
-        String winner = "You";
-
-        //when
-        //gameRepository.save(winner,yourSelection,mySelection);
-        statisticsService.save(winner,yourSelection,mySelection);
-
-        //then
-        assertEquals("You", winner);
-        verify(statisticsService).save(winner,yourSelection,mySelection);
-        verifyNoInteractions(statisticsService);
-    }
-
-     */
 
 }
