@@ -7,6 +7,9 @@ import se.systementor.stengameserver.repositoies.GameRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class StatisticsService {
@@ -24,5 +27,34 @@ public class StatisticsService {
         //game.setId(games.size()+1);
         //games.add(game);
         gameRepository.save(game);
+    }
+
+    public Map<String, Integer> getStatistics() {
+        Map<String, Integer> statistics = new HashMap<>();
+
+        // Get all games
+        List<Game> games = gameRepository.findAll();
+
+        // Calculate statistics based on the list of games
+        int youWins = 0;
+        int computerWins = 0;
+        int ties = 0;
+
+        for (Game game : games) {
+            String winner = game.getWinner();
+            if ("You".equals(winner)) {
+                youWins++;
+            } else if ("Computer".equals(winner)) {
+                computerWins++;
+            } else if ("Tie".equals(winner)) {
+                ties++;
+            }
+        }
+
+        statistics.put("YouWins", youWins);
+        statistics.put("ComputerWins", computerWins);
+        statistics.put("Ties", ties);
+
+        return statistics;
     }
 }

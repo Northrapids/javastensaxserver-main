@@ -1,6 +1,8 @@
 package se.systementor.stengameserver.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.systementor.stengameserver.DTO.GameResult;
 import se.systementor.stengameserver.services.StatisticsService;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
@@ -50,5 +53,13 @@ public class GameController {
         if(index == 0) return "STONE";
         if(index == 1) return "SCISSOR";
         return "BAG";
+    }
+
+
+
+    @GetMapping("/api/stats")
+    public ResponseEntity<Map<String, Integer>> getStatistics() {
+        Map<String, Integer> statistics = statisticsService.getStatistics();
+        return new ResponseEntity<>(statistics, HttpStatus.OK);
     }
 }
