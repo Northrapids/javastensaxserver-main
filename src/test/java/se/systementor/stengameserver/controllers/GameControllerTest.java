@@ -32,7 +32,7 @@ class GameControllerTest {
         //then, what we expect
         //checks if the method is called, in this case one time
 
-        verify(statisticsService,times(1)).save("Computer","BAG","Scissors");
+        verify(statisticsService,times(2)).save("Computer","BAG","Scissors");
         verifyNoMoreInteractions(statisticsService);
 
 
